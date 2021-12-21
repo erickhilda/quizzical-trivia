@@ -1,0 +1,85 @@
+{
+  "response_code": 0,
+  "results": [
+    {
+      "category": "Sports",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "With which team did Michael Schumacher make his Formula One debut at the 1991 Belgian Grand Prix?",
+      "correct_answer": "Jordan",
+      "incorrect_answers": ["Benetton", "Ferrari", "Mercedes"]
+    },
+    {
+      "category": "Entertainment: Books",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What is Hermione Granger&#039;s middle name?",
+      "correct_answer": "Jean",
+      "incorrect_answers": ["Jane", "Emma", "Jo"]
+    },
+    {
+      "category": "Geography",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The World Health Organization headquarters is located in which European country?",
+      "correct_answer": "Switzerland",
+      "incorrect_answers": ["United Kingdom", "France", "Belgium"]
+    },
+    {
+      "category": "Politics",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "&quot;Yes, America Can!&quot; was this United States politician&#039;s de facto campaign slogan in 2004.",
+      "correct_answer": "George W. Bush",
+      "incorrect_answers": ["John Kerry", "Barack Obama", "Al Gore"]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "How many voice channels does the Super Nintendo Entertainment System support?",
+      "correct_answer": "8",
+      "incorrect_answers": ["6", "10", "12"]
+    },
+    {
+      "category": "Entertainment: Television",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Prior to working at Wizards of the Coast, &quot;Mark Rosewater&quot; was a writer for which show?",
+      "correct_answer": "Roseanne",
+      "incorrect_answers": ["Boy Meets World", "The X-Files", "NYPD Blue"]
+    },
+    {
+      "category": "General Knowledge",
+      "type": "boolean",
+      "difficulty": "medium",
+      "question": "The pickled gherkin was first added to hamburgers because a US health law required all fast-food to include a source of Vitamin C.",
+      "correct_answer": "False",
+      "incorrect_answers": ["True"]
+    },
+    {
+      "category": "Geography",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What mountain range lines the border between Spain and France?",
+      "correct_answer": "Pyrenees",
+      "incorrect_answers": ["Alps", "Carpathians", "Urals"]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which Beatle wrote and sang the song &quot;Why Don&#039;t We Do It in the Road&quot; after being inspired by seeing two monkeys copulating in the street?",
+      "correct_answer": "Paul",
+      "incorrect_answers": ["John", "George", "Ringo"]
+    },
+    {
+      "category": "Entertainment: Television",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the name of the race horse that Tony Soprano becomes attached to?",
+      "correct_answer": "Pie-O-My",
+      "incorrect_answers": ["Man o&#039; war", "Bada Bing", "Honest Earnings"]
+    }
+  ]
+}
