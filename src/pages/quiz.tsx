@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { IQuiz } from "entities/quiz.entity";
+import { nanoid } from "nanoid";
 
 const Quiz: NextPage = () => {
   const [quiz, setQuiz] = useState<IQuiz[]>([]);
@@ -17,10 +18,64 @@ const Quiz: NextPage = () => {
         incorrectAnswer: question.incorrect_answers,
         options: [...question.incorrect_answers, question.correct_answer],
         answer: "",
+        id: nanoid(),
+        result: false,
       };
     });
 
     setQuiz(quiz);
+  }
+
+  function selectAnswer(answer: string, id: string) {
+    setQuiz((prevQuiz) =>
+      prevQuiz.map((question) => {
+        if (question.id === id) {
+          return {
+            ...question,
+            answer,
+          };
+        } else {
+          return question;
+        }
+      })
+    );
+  }
+
+  const styles = {
+    backgroundColor: "#D6DBF5",
+    borderColor: "#D6DBF5",
+  };
+
+  const correctStyles = {
+    backgroundColor: "#94D7A2",
+    borderColor: "#94D7A2",
+  };
+
+  const incorrectStyles = {
+    backgroundColor: "#F8BCBC",
+    borderColor: "#F8BCBC",
+  };
+
+  const [haveBeenCheck, setHaveBeenCheck] = useState(false);
+
+  function checkAnswer() {
+    setQuiz((prevQuiz) =>
+      prevQuiz.map((question) => {
+        if (question.answer === question.correctAnswer) {
+          return {
+            ...question,
+            result: true,
+          };
+        } else {
+          return {
+            ...question,
+            result: false,
+          };
+        }
+      })
+    );
+
+    setHaveBeenCheck(true);
   }
 
   useEffect(() => {
@@ -47,6 +102,16 @@ const Quiz: NextPage = () => {
                   {question.options.map((option, index) => (
                     <span
                       key={`option-${index}`}
+                      onClick={() => selectAnswer(option, question.id)}
+                      style={
+                        haveBeenCheck && question.result && option === question.answer
+                          ? correctStyles
+                          : haveBeenCheck && !question.result && option === question.answer
+                          ? incorrectStyles
+                          : option === question.answer
+                          ? styles
+                          : {}
+                      }
                       className="text-lavender-600 border-lavender-500 border rounded-full px-3 py-1 text-sm font-semibold hover:bg-lavender-100 hover:border-lavender-100 text-center"
                     >
                       {option}
@@ -60,7 +125,10 @@ const Quiz: NextPage = () => {
             <div>...loading</div>
           )}
 
-          <button className="bg-lavender-600 py-3 px-6 text-xl font-semibold text-smoke rounded-lg mt-6">
+          <button
+            className="bg-lavender-600 py-3 px-6 text-xl font-semibold text-smoke rounded-lg mt-6"
+            onClick={checkAnswer}
+          >
             Check Answer
           </button>
         </div>
