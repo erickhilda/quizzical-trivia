@@ -56,26 +56,31 @@ const Quiz: NextPage = () => {
     borderColor: "#F8BCBC",
   };
 
-  const [haveBeenCheck, setHaveBeenCheck] = useState(false);
+  const [isEvaluated, setisEvaluated] = useState(false);
 
   function checkAnswer() {
-    setQuiz((prevQuiz) =>
-      prevQuiz.map((question) => {
-        if (question.answer === question.correctAnswer) {
-          return {
-            ...question,
-            result: true,
-          };
-        } else {
-          return {
-            ...question,
-            result: false,
-          };
-        }
-      })
-    );
+    if (isEvaluated) {
+      fetchQuestions();
+      setisEvaluated(false);
+    } else {
+      setQuiz((prevQuiz) =>
+        prevQuiz.map((question) => {
+          if (question.answer === question.correctAnswer) {
+            return {
+              ...question,
+              result: true,
+            };
+          } else {
+            return {
+              ...question,
+              result: false,
+            };
+          }
+        })
+      );
 
-    setHaveBeenCheck(true);
+      setisEvaluated(true);
+    }
   }
 
   useEffect(() => {
@@ -104,9 +109,13 @@ const Quiz: NextPage = () => {
                       key={`option-${index}`}
                       onClick={() => selectAnswer(option, question.id)}
                       style={
-                        haveBeenCheck && question.result && option === question.answer
+                        isEvaluated &&
+                        question.result &&
+                        option === question.answer
                           ? correctStyles
-                          : haveBeenCheck && !question.result && option === question.answer
+                          : isEvaluated &&
+                            !question.result &&
+                            option === question.answer
                           ? incorrectStyles
                           : option === question.answer
                           ? styles
@@ -124,13 +133,20 @@ const Quiz: NextPage = () => {
           ) : (
             <div>...loading</div>
           )}
-
-          <button
-            className="bg-lavender-600 py-3 px-6 text-xl font-semibold text-smoke rounded-lg mt-6"
-            onClick={checkAnswer}
-          >
-            Check Answer
-          </button>
+          <div className="flex flex-row gap-2 justify-center items-center mt-6">
+            {isEvaluated && (
+              <p className="text-lavender-600 text-xl font-bold">
+                You scored {quiz.filter((item) => item.result).length}/
+                {quiz.length} correct answers
+              </p>
+            )}
+            <button
+              className="bg-lavender-600 py-3 px-6 text-xl font-semibold text-smoke rounded-lg"
+              onClick={checkAnswer}
+            >
+              {isEvaluated ? "Play Again" : "Check Answer"}
+            </button>
+          </div>
         </div>
       </main>
     </div>
