@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { IQuiz } from "entities/quiz.entity";
 import { nanoid } from "nanoid";
+import Image from "next/image";
 
 const Quiz: NextPage = () => {
   const [quiz, setQuiz] = useState<IQuiz[]>([]);
@@ -95,7 +96,16 @@ const Quiz: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex justify-center items-center h-full p-16 w-full">
+      <main className="flex justify-center items-center h-full p-16 w-full overflow-hidden relative">
+        <div className="absolute -top-[80px] -right-[80px]">
+          <Image
+            src="/images/lemon-blob.svg"
+            alt="blob"
+            height={235}
+            width={297}
+          />
+        </div>
+
         <div className="w-2/4 flex flex-col">
           {quiz.length !== 0 ? (
             quiz.map((question, index) => (
@@ -147,6 +157,15 @@ const Quiz: NextPage = () => {
               {isEvaluated ? "Play Again" : "Check Answer"}
             </button>
           </div>
+        </div>
+
+        <div className="absolute -bottom-[80px] -left-[80px]">
+          <Image
+            src="/images/azure-blob.svg"
+            alt="blob"
+            height={235}
+            width={297}
+          />
         </div>
       </main>
     </div>
